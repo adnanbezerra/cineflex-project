@@ -1,9 +1,25 @@
+import styled from "styled-components"
+
 export default function SessionScreen (props) {
     return (
-        <div className="container">
-            <p className="title">Selecione o(s) assento(s)</p>
+        <Container>
+            <ScreenTitle>Selecione o horário</ScreenTitle>
 
-            <Link to="SuccessScreen">Reservar assento(s)</Link>
-        </div>
+            <Link to="/SessionScreen"></Link>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`
+
+
+const ScreenTitle = styled.p`
+    margin-top: 122px;
+    font-family: 'Recursive', sans-serif;
+    font-size: 24px;
+`
