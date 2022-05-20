@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import styled from "styled-components"
 
-export default function SessionScreen( {setSession} ) {
+export default function SessionScreen({ setSession }) {
     const { movieId } = useParams();
     const [sessions, setSessions] = useState([]);
 
@@ -13,8 +13,6 @@ export default function SessionScreen( {setSession} ) {
 
         promise.then((answer) => {
             setSessions([...answer.data.days]);
-
-            console.log(sessions)
         })
     }, [])
 
@@ -23,15 +21,17 @@ export default function SessionScreen( {setSession} ) {
             <ScreenTitle>Selecione o horário</ScreenTitle>
 
             <Sessions>
-                {sessions.length === 0 ? <img src="./Loading_icon.gif" alt="" /> : sessions.map((session) => { return(
-                    <Session>
-                        <TitleSession>{session.weekday} - {session.date}</TitleSession>
-                        <div className="sessionsList">
-                            <Link to={`/assentos/${session.id}`}><Button onClick={ () => setSession( {day: session.weekday, time: session.showtimes[0].name, id: session.showtimes[0].id}) } >{session.showtimes[0].name}</Button></Link>
-                            <Link to={`/assentos/${session.id}`}><Button onClick={ () => setSession( {day: session.weekday, time: session.showtimes[1].name, id: session.showtimes[1].id}) } >{session.showtimes[1].name}</Button></Link>
-                        </div>
-                    </Session>
-                )})
+                {sessions.length === 0 ? <img src="./Loading_icon.gif" alt="" /> : sessions.map((session) => {
+                    return (
+                        <Session>
+                            <TitleSession>{session.weekday} - {session.date}</TitleSession>
+                            <div className="sessionsList">
+                                <Link to={`/assentos/${session.showtimes[0].id}`}><Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[0].name, id: session.showtimes[0].id })} >{session.showtimes[0].name}</Button></Link>
+                                <Link to={`/assentos/${session.showtimes[1].id}`}><Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[1].name, id: session.showtimes[1].id })} >{session.showtimes[1].name}</Button></Link>
+                            </div>
+                        </Session>
+                    )
+                })
                 }
             </Sessions>
         </Container>

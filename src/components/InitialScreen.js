@@ -58,6 +58,7 @@ const Movie = styled.div`
     align-items: center;
     margin: 0 15px;
     margin-top: 10px;
+    margin-bottom: 10px;
 
     img {
         width: 129px;
