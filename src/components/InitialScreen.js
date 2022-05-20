@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
 
-export default function InitialScreen() {
+export default function InitialScreen({ setMovie }) {
 
     const [movies, setMovies] = useState([]);
 
@@ -20,7 +20,8 @@ export default function InitialScreen() {
             <ScreenTitle>Selecione o filme</ScreenTitle>
 
             <Movies>
-                {movies.map((movie) => <Link to={`/SessionScreen/:${movie.id}`}><Movie> <img src={movie.posterURL} alt="" /> </Movie></Link>)}
+                {movies.length === 0 ? <img src="./Loading_icon.gif" alt="" /> :
+                    movies.map((movie) => <Link to={`/sessoes/${movie.id}`}><Movie onClick={() => setMovie({ id: movie.id, imageUrl: movie.posterURL, movieName: movie.title })} > <img src={movie.posterURL} alt="" /> </Movie></Link>)}
             </Movies>
         </Container>
     )
@@ -30,6 +31,7 @@ const ScreenTitle = styled.p`
     margin-top: 122px;
     font-family: 'Recursive', sans-serif;
     font-size: 24px;
+    color: #293845;
 `
 
 const Movies = styled.div`
