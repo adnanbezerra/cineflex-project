@@ -24,15 +24,23 @@ export default function App() {
         time: ""
     });
 
+    const [order, setOrder] = useState({
+        ids: [],
+        name: "",
+        cpf: ""
+    })
+
+    const [seatList, setSeatList] = useState([])
+
     return (
         <BrowserRouter>
-            <Title setSession={setSession} setMovie={setMovie} />
+            <Title setSession={setSession} setMovie={setMovie} setOrder={setOrder} setSeatList={setSeatList} />
 
             <Routes>
                 <Route path="/" element={<InitialScreen setMovie={setMovie} />} />
                 <Route path="/sessoes/:movieId" element={<SessionScreen setSession={setSession} />} />
-                <Route path="/assentos/:sessionId" element={<SeatsScreen />} />
-                <Route path="/sucesso" element={<SuccessScreen />} />
+                <Route path="/assentos/:sessionId" element={<SeatsScreen setOrder={setOrder} order={order} setMovie={setMovie} movie={movie} seatList={seatList} setSeatList={setSeatList} />} />
+                <Route path="/sucesso" element={<SuccessScreen movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} order={order} seatList={seatList} setSession={setSession} setMovie={setMovie} setOrder={setOrder} />} />
             </Routes>
 
             {movie.id ? <Footer imageUrl={movie.imageUrl} movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} /> : <></>}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export default function Title( {setSession, setMovie} ) {
+export default function Title( {setSession, setMovie, setOrder, setSeatList} ) {
 
     function zeraTudo() {
         setSession({
@@ -15,6 +15,14 @@ export default function Title( {setSession, setMovie} ) {
             day: "",
             time: ""
         })
+
+        setOrder({
+            ids: [],
+            name: "",
+            cpf: ""
+        })
+
+        setSeatList("")
     }
 
     return (

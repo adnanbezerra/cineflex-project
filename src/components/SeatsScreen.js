@@ -1,17 +1,36 @@
-import { Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Seat from './Seat';
 
-export default function SeatsScreen() {
+export default function SeatsScreen({ setOrder, order, setSeatList, seatList, setMovie, movie }) {
+    let navigate = useNavigate()
 
     const { sessionId } = useParams();
     const [seats, setSeats] = useState([]);
 
-    const user = {
-        id: [],
-        name: "",
-        cpf: ""
+    const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        if (equals(order.ids, [])) {
+            alert("Você precisa escolher uma cadeira!");
+            return;
+        }
+
+        const submit = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", order);
+
+        submit.then((e) => {
+            navigate(`/sucesso`);
+            setMovie({ ...movie, id: "" });
+        }
+        ).catch((e) => {
+            alert("Deu ruim! Tente de novo")
+            console.log(e)
+            console.log(submit)
+        })
     }
 
     useEffect(() => {
@@ -27,47 +46,69 @@ export default function SeatsScreen() {
             <Seats>
                 {seats.length === 0 ? <img src="./Loading_icon.gif" alt="" /> : seats.map((seat) => {
                     return (
-                        <Seat corborder={"#7B8B99"}><p>{seat.name}</p></Seat>
+                        <Seat name={seat.name} isAvailable={seat.isAvailable} setOrder={setOrder} setSeatList={setSeatList} order={order} seatList={seatList} id={seat.id} />
                     )
-                }
-                )}
+                })}
+
             </Seats>
 
             <Examples texto={false}>
-                <Seat cor={"#1AAE9E"} corborder={"#8DD7CF"}></Seat><Seat cor={"#C3CFD9"} corborder={"#7B8B99"} ></Seat><Seat cor={"#F7C52B"} corborder={"#F7C52B"}></Seat>
+                <Seat></Seat><Seat isAvailable={true} ></Seat><Seat></Seat>
             </Examples>
+
             <Examples texto={true}>
                 <Example>Selecionado</Example>
                 <Example>Disponível</Example>
-                <Example>Disponível</Example>
+                <Example>Indisponível</Example>
             </Examples>
 
-            <Form onSubmit={"nada"}>
+            <Form onSubmit={submitForm}>
                 <FormText>Nome do comprador:</FormText>
-                <InputForm type="text" placeholder="Digite seu nome..." />
-                
-                <FormText>CPF do comprador:</FormText>
-                <InputForm type="number" placeholder="Digite seu CPF..." />
+                <InputForm type="text" placeholder="Digite seu nome..." value={order.name} onChange={(e) => setOrder({ ...order, name: e.target.value })} required />
 
-                <Link to="SuccessScreen" style={{ textDecoration: 'none' }}><Button>Reservar assento(s)</Button></Link>                
+                <FormText>CPF do comprador:</FormText>
+                <InputForm type="number" placeholder="Digite seu CPF..." value={order.cpf} onChange={(e) => setOrder({ ...order, cpf: e.target.value })} required />
+
+                <ButtonCage>
+                    <Button>Reservar assento(s)</Button>
+                </ButtonCage>
             </Form>
 
         </Container>
     )
 }
 
+const ButtonCage = styled.div`
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
 const Button = styled.button`
     background-color: #E8833A;
     width: 225px;
     height: 42px;
 
-    margin-top: 57px;
+    margin-top: 40px;
     border: 0;
     border-radius: 3px;
+
+    font-size: 18px;
+    color: white;
+
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 const Form = styled.form`
-    margin-top: 34px;
+    margin-top: 31px;
+
+    margin-bottom: 150px;
+
+    display: flex;
+    flex-direction: column;
 `
 
 const InputForm = styled.input`
@@ -75,12 +116,24 @@ const InputForm = styled.input`
     width: 327px;
     height: 51px;
     border-radius: 3px;
+    padding-left: 10px;
+    margin-top: 3px;
+
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    &::placeholder {
+        color: #AFAFAF;
+        font-size: 18px;
+        font-style: italic;
+    }
 `
 
 const FormText = styled.p`
     font-size: 18px;
     color: #293845;
-    margin-top: 7px;
+    margin-top: 10px;
 `
 
 const Example = styled.p`
@@ -90,31 +143,10 @@ const Example = styled.p`
 
 const Examples = styled.div`
     display: flex;
-    width: 100%;
+    width: 97%;
     justify-content: space-around;
 
-    margin-left: ${props => props.texto ? 0 : '10px'};
-`
-
-const Seat = styled.div`
-    border-radius: 50%;
-    width: 26px;
-    height: 26px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid ${props => props.corborder};
-    background-color: ${props => props.cor};
-
-    margin-top: 18px;
-    margin-right: 7px;
-
-    p {
-        font-size: 11px;
-        color: black;
-    }
+    padding-left: ${props => props.texto ? 0 : '10px'};
 `
 
 const Seats = styled.div`
@@ -122,8 +154,8 @@ const Seats = styled.div`
     display: flex;
     flex-wrap: wrap;
 
-    padding-left: 15px;
-    /* padding-right: 10px; */
+    padding-left: 20px;
+    padding-right: 10px;
 `
 
 const ScreenTitle = styled.p`
@@ -138,4 +170,6 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    box-sizing: border-box;
 `
