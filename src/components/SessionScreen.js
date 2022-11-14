@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import LoadingIcon from "../assets/images/Loading_icon.gif"
 
 import styled from "styled-components"
 
@@ -22,7 +23,7 @@ export default function SessionScreen({ setSession }) {
             <ScreenTitle>Selecione o horário</ScreenTitle>
 
             <Sessions>
-                {sessions.length === 0 ? <img src="./Loading_icon.gif" alt="" /> : sessions.map((session) => {
+                {sessions.length === 0 ? <img src={LoadingIcon} alt="" /> : sessions.map((session) => {
                     return (
                         <Session>
                             <TitleSession>{session.weekday} - {session.date}</TitleSession>
