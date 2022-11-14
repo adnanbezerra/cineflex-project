@@ -52,7 +52,7 @@ export default function SuccessScreen({ movieName, sessionDay, sessionTime, orde
 
             </Informations>
 
-            <Link to="/"><Button onClick={zeraTudo}>Voltar pra Home</Button></Link>
+            <Link to="/"><Button onClick={resetOrder}>Voltar pra Home</Button></Link>
         </Container>
     )
 }
