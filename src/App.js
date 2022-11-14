@@ -42,7 +42,11 @@ export default function App() {
                 <Route path="/success" element={<SuccessScreen movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} order={order} seatList={seatList} setSession={setSession} setMovie={setMovie} setOrder={setOrder} />} />
             </Routes>
 
-            {movie.id ? <Footer imageUrl={movie.imageUrl} movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} /> : <></>}
+            {movie.id ?
+                <Footer imageUrl={movie.imageUrl} movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} />
+                :
+                <></>
+            }
         </BrowserRouter>
     );
 }
