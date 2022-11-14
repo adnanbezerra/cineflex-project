@@ -15,13 +15,31 @@ export default function InitialScreen({ setMovie }) {
         })
     }, []);
 
+    function getMovie(movie) {
+        return (
+            <Link to={`/sessoes/${movie.id}`}>
+                <Movie onClick={() =>
+                    setMovie({ id: movie.id, imageUrl: movie.posterURL, movieName: movie.title })
+                }>
+                    <img src={movie.posterURL} alt="" />
+                </Movie>
+            </Link>
+        );
+    }
+
     return (
         <Container>
             <ScreenTitle>Selecione o filme</ScreenTitle>
 
             <Movies>
-                {movies.length === 0 ? <img src="./Loading_icon.gif" alt="" /> :
-                    movies.map((movie) => <Link to={`/sessoes/${movie.id}`}><Movie onClick={() => setMovie({ id: movie.id, imageUrl: movie.posterURL, movieName: movie.title })} > <img src={movie.posterURL} alt="" /> </Movie></Link>)}
+                {movies.length === 0 ?
+                    <img src="./Loading_icon.gif" alt="" />
+                    :
+                    movies.map((movie) => {
+                        return getMovie(movie)
+                    }
+                    )
+                }
             </Movies>
         </Container>
     )

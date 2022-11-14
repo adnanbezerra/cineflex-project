@@ -18,28 +18,37 @@ export default function SessionScreen({ setSession }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    function getSession(session) {
+        return (
+            <Session>
+                <TitleSession>{session.weekday} - {session.date}</TitleSession>
+                <div className="sessionsList">
+                    <Link to={`/assentos/${session.showtimes[0].id}`}>
+                        <Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[0].name, id: session.showtimes[0].id })} >{session.showtimes[0].name}</Button>
+                    </Link>
+
+                    <Link to={`/assentos/${session.showtimes[1].id}`}>
+                        <Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[1].name, id: session.showtimes[1].id })} >{session.showtimes[1].name}</Button>
+                    </Link>
+
+                </div>
+            </Session>
+        );
+    }
+
     return (
         <Container>
             <ScreenTitle>Selecione o horário</ScreenTitle>
 
             <Sessions>
-                {sessions.length === 0 ? <img src={LoadingIcon} alt="" /> : sessions.map((session) => {
-                    return (
-                        <Session>
-                            <TitleSession>{session.weekday} - {session.date}</TitleSession>
-                            <div className="sessionsList">
-                                <Link to={`/assentos/${session.showtimes[0].id}`}>
-                                    <Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[0].name, id: session.showtimes[0].id })} >{session.showtimes[0].name}</Button>
-                                </Link>
-
-                                <Link to={`/assentos/${session.showtimes[1].id}`}>
-                                    <Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[1].name, id: session.showtimes[1].id })} >{session.showtimes[1].name}</Button>
-                                </Link>
-
-                            </div>
-                        </Session>
-                    )
-                })
+                {sessions.length === 0 ?
+                    <img src={LoadingIcon} alt="" />
+                    :
+                    sessions.map((session) => {
+                        return (
+                            getSession(session)
+                        )
+                    })
                 }
             </Sessions>
         </Container>
