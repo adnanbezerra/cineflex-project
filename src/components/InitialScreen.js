@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
+import LoadingIcon from "../assets/images/Loading_icon.gif"
 
 export default function InitialScreen({ setMovie }) {
 
@@ -33,7 +34,7 @@ export default function InitialScreen({ setMovie }) {
 
             <Movies>
                 {movies.length === 0 ?
-                    <img src="./Loading_icon.gif" alt="" />
+                    <img src={LoadingIcon} alt="" />
                     :
                     movies.map((movie) => {
                         return getMovie(movie)
