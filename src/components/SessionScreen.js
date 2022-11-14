@@ -23,11 +23,11 @@ export default function SessionScreen({ setSession }) {
             <Session>
                 <TitleSession>{session.weekday} - {session.date}</TitleSession>
                 <div className="sessionsList">
-                    <Link to={`/assentos/${session.showtimes[0].id}`}>
+                    <Link to={`/seats/${session.showtimes[0].id}`}>
                         <Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[0].name, id: session.showtimes[0].id })} >{session.showtimes[0].name}</Button>
                     </Link>
 
-                    <Link to={`/assentos/${session.showtimes[1].id}`}>
+                    <Link to={`/seats/${session.showtimes[1].id}`}>
                         <Button onClick={() => setSession({ day: session.weekday, time: session.showtimes[1].name, id: session.showtimes[1].id })} >{session.showtimes[1].name}</Button>
                     </Link>
 
