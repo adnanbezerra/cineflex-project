@@ -9,7 +9,6 @@ import Footer from "./shared/Footer";
 import GlobalStyle from "./assets/styles/GlobalStyle";
 
 export default function App() {
-
     const [movie, setMovie] = useState({
         id: "",
         imageUrl: "",
