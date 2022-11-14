@@ -6,10 +6,8 @@ import Seat from './Seat';
 
 export default function SeatsScreen({ setOrder, order, setSeatList, seatList, setMovie, movie }) {
     let navigate = useNavigate()
-
     const { sessionId } = useParams();
     const [seats, setSeats] = useState([]);
-
     const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
     function submitForm(event) {
@@ -48,7 +46,15 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
             <Seats>
                 {seats.length === 0 ? <img src="./Loading_icon.gif" alt="" /> : seats.map((seat) => {
                     return (
-                        <Seat name={seat.name} isAvailable={seat.isAvailable} setOrder={setOrder} setSeatList={setSeatList} order={order} seatList={seatList} id={seat.id} />
+                        <Seat
+                            name={seat.name}
+                            isAvailable={seat.isAvailable}
+                            setOrder={setOrder}
+                            setSeatList={setSeatList}
+                            order={order}
+                            seatList={seatList}
+                            id={seat.id}
+                        />
                     )
                 })}
 
@@ -66,10 +72,22 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
 
             <Form onSubmit={submitForm}>
                 <FormText>Nome do comprador:</FormText>
-                <InputForm type="text" placeholder="Digite seu nome..." value={order.name} onChange={(e) => setOrder({ ...order, name: e.target.value })} required />
+                <InputForm
+                    type="text"
+                    placeholder="Digite seu nome..."
+                    value={order.name}
+                    onChange={(e) => setOrder({ ...order, name: e.target.value })}
+                    required
+                />
 
                 <FormText>CPF do comprador:</FormText>
-                <InputForm type="number" placeholder="Digite seu CPF..." value={order.cpf} onChange={(e) => setOrder({ ...order, cpf: e.target.value })} required />
+                <InputForm
+                    type="number"
+                    placeholder="Digite seu CPF..."
+                    value={order.cpf}
+                    onChange={(e) => setOrder({ ...order, cpf: e.target.value })}
+                    required
+                />
 
                 <ButtonCage>
                     <Button>Reservar assento(s)</Button>
