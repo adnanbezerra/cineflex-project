@@ -18,7 +18,7 @@ export default function InitialScreen({ setMovie }) {
 
     function getMovie(movie) {
         return (
-            <Link to={`/sessoes/${movie.id}`}>
+            <Link to={`/sessions/${movie.id}`}>
                 <Movie onClick={() =>
                     setMovie({ id: movie.id, imageUrl: movie.posterURL, movieName: movie.title })
                 }>
