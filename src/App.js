@@ -1,8 +1,5 @@
-import "./css/reset.css"
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-
 import Title from "./shared/Title";
 import InitialScreen from "./components/InitialScreen";
 import SessionScreen from "./components/SessionScreen";
