@@ -40,9 +40,9 @@ export default function App() {
 
             <Routes>
                 <Route path="/" element={<InitialScreen setMovie={setMovie} />} />
-                <Route path="/sessoes/:movieId" element={<SessionScreen setSession={setSession} />} />
-                <Route path="/assentos/:sessionId" element={<SeatsScreen setOrder={setOrder} order={order} setMovie={setMovie} movie={movie} seatList={seatList} setSeatList={setSeatList} />} />
-                <Route path="/sucesso" element={<SuccessScreen movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} order={order} seatList={seatList} setSession={setSession} setMovie={setMovie} setOrder={setOrder} />} />
+                <Route path="/sessions/:movieId" element={<SessionScreen setSession={setSession} />} />
+                <Route path="/seats/:sessionId" element={<SeatsScreen setOrder={setOrder} order={order} setMovie={setMovie} movie={movie} seatList={seatList} setSeatList={setSeatList} />} />
+                <Route path="/success" element={<SuccessScreen movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} order={order} seatList={seatList} setSession={setSession} setMovie={setMovie} setOrder={setOrder} />} />
             </Routes>
 
             {movie.id ? <Footer imageUrl={movie.imageUrl} movieName={movie.movieName} sessionDay={session.day} sessionTime={session.time} /> : <></>}

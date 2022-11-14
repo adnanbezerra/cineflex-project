@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function SuccessScreen({ movieName, sessionDay, sessionTime, order, seatList, setSession, setMovie, setOrder, setSeatList }) {
-    function zeraTudo() {
+    function resetOrder() {
         setSession({
             id: "",
             imageUrl: "",
@@ -38,7 +38,10 @@ export default function SuccessScreen({ movieName, sessionDay, sessionTime, orde
 
                 <InfoTitle>Ingressos</InfoTitle>
                 <Infos>
-                    {seatList.map( (session) => <InfoText>Assento {session}</InfoText>)}
+                    {seatList.map((session) => {
+                        return (<InfoText>Assento {session}</InfoText>)
+                    }
+                    )}
                 </Infos>
 
                 <InfoTitle>Comprador</InfoTitle>

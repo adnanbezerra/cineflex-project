@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export default function Title( {setSession, setMovie, setOrder, setSeatList} ) {
-
-    function zeraTudo() {
+export default function Title({ setSession, setMovie, setOrder, setSeatList }) {
+    function resetOrder() {
         setSession({
             id: "",
             imageUrl: "",
@@ -27,7 +26,9 @@ export default function Title( {setSession, setMovie, setOrder, setSeatList} ) {
 
     return (
         <TitleDiv>
-            <Link to="/" style={{ textDecoration: 'none' }} onClick={zeraTudo}><TitleText>CINEFLEX</TitleText></Link>
+            <Link to="/" style={{ textDecoration: 'none' }} onClick={resetOrder}>
+                <TitleText>CINEFLEX</TitleText>
+            </Link>
         </TitleDiv>
     )
 }
