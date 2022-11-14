@@ -9,7 +9,11 @@ export default function Footer({ imageUrl, movieName, sessionDay, sessionTime })
 
             <Texts>
                 <MovieInfo> {movieName} </MovieInfo>
-                {sessionDay ? <MovieInfo> {sessionDay} - {sessionTime} </MovieInfo> : <></>}
+                {sessionDay ?
+                    <MovieInfo> {sessionDay} - {sessionTime} </MovieInfo>
+                    :
+                    <></>
+                }
             </Texts>
         </FooterDiv>
     )
