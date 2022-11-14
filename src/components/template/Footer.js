@@ -6,6 +6,7 @@ export default function Footer({ imageUrl, movieName, sessionDay, sessionTime })
             <Image>
                 <img src={imageUrl} alt="" />
             </Image>
+
             <Texts>
                 <MovieInfo> {movieName} </MovieInfo>
                 {sessionDay ? <MovieInfo> {sessionDay} - {sessionTime} </MovieInfo> : <></>}
