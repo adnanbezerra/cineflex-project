@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import Title from "./shared/Title";
 import InitialScreen from "./components/InitialScreen";
 import SessionScreen from "./components/SessionScreen";
 import SeatsScreen from "./components/SeatsScreen";
 import SuccessScreen from "./components/SuccessScreen";
-import Footer from "./shared/Footer";
 import GlobalStyle from "./assets/styles/GlobalStyle";
+import Title from "./components/template/Title";
+import Footer from "./components/template/Footer";
 
 export default function App() {
     const [movie, setMovie] = useState({
