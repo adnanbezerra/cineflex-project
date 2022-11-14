@@ -7,7 +7,6 @@ export default function Seat({ isAvailable, name, setOrder, order, setSeatList, 
 
     function idSetter() {
         if (isAvailable) {
-            console.log("foi")
             if (isSelected) {
                 setOrder({ ...order, ids: [order.ids.filter(removeId => removeId !== id)] })
                 setSeatList(seatList.filter(removeName => removeName !== name))
@@ -22,7 +21,9 @@ export default function Seat({ isAvailable, name, setOrder, order, setSeatList, 
     }
 
     return (
-        <Cadeira isAvailable={isAvailable} isSelected={isSelected} onClick={idSetter} > <p>{name}</p> </Cadeira>
+        <Cadeira isAvailable={isAvailable} isSelected={isSelected} onClick={idSetter}>
+            <p>{name}</p>
+        </Cadeira>
     )
 }
 
