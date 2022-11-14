@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function SuccessScreen({ movieName, sessionDay, sessionTime, order, seatList, setSession, setMovie, setOrder, setSeatList }) {
-
     function zeraTudo() {
         setSession({
             id: "",

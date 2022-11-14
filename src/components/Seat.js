@@ -3,11 +3,9 @@ import { useState } from "react";
 
 
 export default function Seat({ isAvailable, name, setOrder, order, setSeatList, seatList, id }) {
-
     const [isSelected, setIsSelected] = useState(false);
 
     function idSetter() {
-
         if (isAvailable) {
             console.log("foi")
             if (isSelected) {
