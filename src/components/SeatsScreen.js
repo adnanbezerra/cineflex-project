@@ -23,13 +23,12 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
         const submit = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", order);
 
         submit.then((e) => {
-            navigate(`/sucesso`);
+            navigate(`/success`);
             setMovie({ ...movie, id: "" });
         }
         ).catch((e) => {
             alert("Deu ruim! Tente de novo")
-            console.log(e)
-            console.log(submit)
+            console.error(e)
         })
     }
 
