@@ -9,6 +9,7 @@ import SessionScreen from "./components/SessionScreen";
 import SeatsScreen from "./components/SeatsScreen";
 import SuccessScreen from "./components/SuccessScreen";
 import Footer from "./shared/Footer";
+import GlobalStyle from "./assets/styles/GlobalStyle";
 
 export default function App() {
 
@@ -17,7 +18,7 @@ export default function App() {
         imageUrl: "",
         movieName: "",
     });
-    
+
     const [session, setSession] = useState({
         id: "",
         day: "",
@@ -34,6 +35,7 @@ export default function App() {
 
     return (
         <BrowserRouter>
+            <GlobalStyle />
             <Title setSession={setSession} setMovie={setMovie} setOrder={setOrder} setSeatList={setSeatList} />
 
             <Routes>
