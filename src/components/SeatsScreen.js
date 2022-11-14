@@ -34,9 +34,12 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
     }
 
     useEffect(() => {
-        const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`)
+        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`)
+            .then((answer) => {
+                setSeats([...answer.data.seats])
+            });
 
-        promise.then((answer) => setSeats([...answer.data.seats]))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

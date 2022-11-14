@@ -9,11 +9,12 @@ export default function SessionScreen({ setSession }) {
     const [sessions, setSessions] = useState([]);
 
     useEffect(() => {
-        const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`)
+        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`)
+            .then((answer) => {
+                setSessions([...answer.data.days]);
+            })
 
-        promise.then((answer) => {
-            setSessions([...answer.data.days]);
-        })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
