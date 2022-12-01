@@ -10,6 +10,15 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
     const [seats, setSeats] = useState([]);
     const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
+    useEffect(() => {
+        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`)
+            .then((answer) => {
+                setSeats([...answer.data.seats])
+            });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     function submitForm(event) {
         event.preventDefault();
 
@@ -29,15 +38,6 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
             console.error(e)
         })
     }
-
-    useEffect(() => {
-        axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`)
-            .then((answer) => {
-                setSeats([...answer.data.seats])
-            });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return (
         <Container>
