@@ -36,20 +36,25 @@ export default function SessionScreen({ setSession }) {
         );
     }
 
+    function getSessionsList() {
+        return (
+            sessions.length === 0 ?
+                <img src={LoadingIcon} alt="" />
+                :
+                sessions.map((session) => {
+                    return (
+                        getSession(session)
+                    )
+                })
+        )
+    }
+
     return (
         <Container>
             <ScreenTitle>Selecione o horário</ScreenTitle>
 
             <Sessions>
-                {sessions.length === 0 ?
-                    <img src={LoadingIcon} alt="" />
-                    :
-                    sessions.map((session) => {
-                        return (
-                            getSession(session)
-                        )
-                    })
-                }
+                {getSessionsList()}
             </Sessions>
         </Container>
     )
