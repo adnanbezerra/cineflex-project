@@ -28,19 +28,24 @@ export default function InitialScreen({ setMovie }) {
         );
     }
 
+    function getMoviesList() {
+        return (
+            movies.length === 0 ?
+                <img src={LoadingIcon} alt="" />
+                :
+                movies.map((movie) => {
+                    return getMovie(movie)
+                }
+                )
+        )
+    }
+
     return (
         <Container>
             <ScreenTitle>Selecione o filme</ScreenTitle>
 
             <Movies>
-                {movies.length === 0 ?
-                    <img src={LoadingIcon} alt="" />
-                    :
-                    movies.map((movie) => {
-                        return getMovie(movie)
-                    }
-                    )
-                }
+                {getMoviesList()}
             </Movies>
         </Container>
     )
