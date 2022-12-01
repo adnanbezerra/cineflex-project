@@ -39,24 +39,32 @@ export default function SeatsScreen({ setOrder, order, setSeatList, seatList, se
         })
     }
 
+    function getSeat(seat) {
+        return (
+            <Seat
+                name={seat.name}
+                isAvailable={seat.isAvailable}
+                setOrder={setOrder}
+                setSeatList={setSeatList}
+                order={order}
+                seatList={seatList}
+                id={seat.id}
+            />
+        );
+    }
+
     return (
         <Container>
             <ScreenTitle>Selecione o(s) assento(s)</ScreenTitle>
 
             <Seats>
-                {seats.length === 0 ? <img src="./Loading_icon.gif" alt="" /> : seats.map((seat) => {
-                    return (
-                        <Seat
-                            name={seat.name}
-                            isAvailable={seat.isAvailable}
-                            setOrder={setOrder}
-                            setSeatList={setSeatList}
-                            order={order}
-                            seatList={seatList}
-                            id={seat.id}
-                        />
-                    )
-                })}
+                {seats.length === 0 ?
+                    <img src="./Loading_icon.gif" alt="" />
+                    :
+                    seats.map((seat) => {
+                        return getSeat(seat);
+                    })
+                }
 
             </Seats>
 
